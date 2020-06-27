@@ -1,0 +1,41 @@
+class Solution:
+    def titleToNumber(self, s: str) -> int:
+        #Right to Left Approach
+        # ans = 0
+        # for i in range(len(s)-1,-1,-1):
+        #     ans = ans + pow(26,len(s)-i-1)*((ord(s[i])-64))
+        # return ans
+    
+        #Left to Right Approach
+        ans = 0
+        for ch in s:
+            ans = ans*26 + (ord(ch)-64)
+        return ans
+
+def stringToString(input):
+    import json
+
+    return json.loads(input)
+
+def main():
+    import sys
+    import io
+    def readlines():
+        for line in io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8'):
+            yield line.strip('\n')
+
+    lines = readlines()
+    while True:
+        try:
+            line = next(lines)
+            s = stringToString(line);
+            
+            ret = Solution().titleToNumber(s)
+
+            out = str(ret);
+            print(out)
+        except StopIteration:
+            break
+
+if __name__ == '__main__':
+    main()
