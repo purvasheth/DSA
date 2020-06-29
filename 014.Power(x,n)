@@ -1,0 +1,62 @@
+#Question - https://leetcode.com/problems/powx-n/
+def power(x,n):
+    if n==0:
+        return 1.0
+    if n&1:
+        return x*power(x,n-1)
+    y = power(x,n>>1)
+    return y*y
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        # O(logn) approaches
+        #interative - https://leetcode.com/problems/powx-n/discuss/19566/Iterative-JavaPython-short-solution-O(log-n)
+        # m = abs(n)
+        # ans = 1.0
+        # while(m>0):
+        #     if m&1:
+        #         ans = ans*x
+        #     x = x*x
+        #     m = m >> 1
+        # if n>=0:
+        #     return ans
+        # return (1/ans)
+        
+        #recursive - https://www.youtube.com/watch?v=wAyrtLAeWvI
+        ans = power(x,abs(n))
+        if n>=0:
+            return ans
+        return (1/ans)
+
+def stringToDouble(input):
+    return float(input)
+
+def stringToInt(input):
+    return int(input)
+
+def doubleToString(input):
+    if input is None:
+        input = 0
+    return "%.5f" % input
+
+def main():
+    import sys
+    def readlines():
+        for line in sys.stdin:
+            yield line.strip('\n')
+    lines = readlines()
+    while True:
+        try:
+            line = next(lines)
+            x = stringToDouble(line)
+            line = next(lines)
+            n = stringToInt(line)
+            
+            ret = Solution().myPow(x, n)
+
+            out = doubleToString(ret)
+            print(out)
+        except StopIteration:
+            break
+
+if __name__ == '__main__':
+    main()
